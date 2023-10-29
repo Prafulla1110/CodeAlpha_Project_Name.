@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Age Converter</title>
+  <style>
+  .container {
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+input[type="date"] {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 5px 15px;
+}
+
+#result {
+  margin-top: 20px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Age Converter</h2>
+    <label for="birthDate">Enter your birth date:</label>
+    <input type="date" id="birthDate">
+    <button onclick="calculateAge()">Calculate</button>
+    <div id="result"></div>
+  </div>
+  <script>
+function calculateAge() {
+  var birthDate = new Date(document.getElementById('birthDate').value);
+  var today = new Date();
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var monthDiff = today.getMonth() - birthDate.getMonth();
+  
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  
+  document.getElementById('result').innerHTML = `Your age is ${age} years old.`;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    #todo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    
+    input[type="text"] {
+      width: 300px;
+      height: 30px;
+      margin-bottom: 10px;
+      padding: 5px;
+      font-size: 16px;
+    }
+    
+    #add-button {
+      width: 100px;
+      height: 30px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    li {
+      margin-bottom: 10px;
+    }
+    
+    .delete-button {
+      float: right;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <div id="todo-container">
+    <input type="text" id="todo-input" placeholder="Enter a task">
+    <button id="add-button">Add</button>
+    <ul id="tasks-list"></ul>
+  </div>
+
+  <script>
+    document.getElementById("add-button").addEventListener("click", function() {
+      var taskInput = document.getElementById("todo-input");
+      var task = taskInput.value;
+      if (task) {
+        var listItem = document.createElement("li");
+        listItem.innerHTML = task + '<button class="delete-button">Delete</button>';
+        document.getElementById("tasks-list").appendChild(listItem);
+        taskInput.value = "";
+        addDeleteListener(listItem);
+      }
+    });
+    
+    function addDeleteListener(listItem) 
+    {
+      var deleteButton = listItem.querySelector(".delete-button");
+      deleteButton.addEventListener("click", function() 
+      {
+        listItem.parentNode.removeChild(listItem);
+      });
+    }
+    </script>
+
+</body>
+</html>
+
+
+
+
